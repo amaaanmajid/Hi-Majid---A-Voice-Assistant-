@@ -1,48 +1,60 @@
-# Hi-Majid-A-Voice-Assistant-
-A LLama-3 based voice-activated chatbot that provides weather updates, personalized greetings, and interactive responses using real-time speech recognition and text-to-speech.
-Hi Majid Chatbot is a voice-activated AI assistant designed to provide information and interact with users through speech recognition and text-to-speech capabilities. It features real-time responses, weather updates, and personalized greetings.
+## Description
+"Hi Majid!" Chatbot is a voice-activated AI assistant that interacts with users through speech recognition and text-to-speech. It offers real-time responses, weather updates, and personalized greetings based on the time of day.
 
-Features-
 Voice Interaction: Speak to the chatbot, and it will respond with synthesized speech.
 Weather Information: Get current weather updates for any city.
-Personalized Greeting: Receives and processes commands, providing greetings based on the time of day.
+Personalized Greeting: Provides greetings based on the time of day and user interaction.
 
-Installation
-Clone the Repository:
 
-bash
-Copy code
-git clone https://github.com/your-username/your-repo-name.git
-Navigate to the Project Directory:
+# Building
 
-bash
-Copy code
-cd your-repo-name
-Install Required Packages:
-Ensure you have Python 3.7+ installed. Create a virtual environment and install dependencies:
+## Requirements
+* ollama: For integrating with the LLaMA model.
+* speech_recognition: For converting speech to text.
+* gtts: For converting text to speech using Google Text-to-Speech.
+* pygame: For playing audio files.
+* requests: For making HTTP requests to the OpenWeatherMap API.
+* Python: Version 3.7 or higher
+* Git: For version control and cloning the repository.
 
-bash
-Copy code
-python -m venv env
-source env/bin/activate  # On Windows use `env\Scripts\activate`
-pip install -r requirements.txt
-Usage
-Run the Chatbot:
 
-bash
-Copy code
-python main.py
-Interact with the Bot:
+## Basic Work-Flow
+* Initialization:
 
-Speak to the bot using a microphone.
-Activate the bot by saying 'Hi Majid'. It will greet you back based on the specific time of the day(Good Morning/ Good evening etc.)
-Use commands like "weather in [city]" to get weather updates.
-Ask "What's your name?" or say "That's all" to end the interaction.
-Configuration
-API Key:
-Replace the placeholder API key in main.py with your own OpenWeatherMap API key to get weather information.
-Update api_key variable in get_weather function.
-Contributing
-Feel free to submit pull requests or open issues if you have suggestions or encounter problems. Contributions are welcome!
+The chatbot initializes various components, including the microphone, audio queues, and threading events.
+Sets up hotkey listeners and prepares for interaction.
+Listening:
 
+The chatbot listens for voice input through the microphone.
+The speech is converted to text using the speech_recognition library.
+
+* Trigger Detection:
+
+The chatbot detects if the user has mentioned the trigger word ("Majid").
+If the trigger word is detected, it processes the subsequent voice command.
+
+* Command Processing:
+
+The chatbot identifies the command or request:
+Greeting: If no specific request is made, it greets the user.
+Name Inquiry: Responds with the chatbot’s name if asked.
+Weather Inquiry: Extracts the city from the request and fetches weather information using the OpenWeatherMap API.
+General Conversation: Processes the text through the LLaMA model for generating responses.
+* Text-to-Speech Conversion:
+
+Converts the generated text response into speech using the gtts library.
+Queues the audio data for playback.
+* Playing Audio:
+
+Plays the generated audio response through the speakers using the pygame library.
+Logging:
+
+Logs interactions and responses to a text file for record-keeping.
+Handling Special Cases:
+
+Handles specific commands like "That's all" to end the conversation and put the chatbot back into listening mode.
+Repetition:
+
+Continues listening and processing commands in a loop until stopped.
+## Installing required and optional dependencies
 
